@@ -42,7 +42,7 @@ with st.sidebar:
                 "--hover-color": "#7FB1AF",
                 "font-weight": "bold",
             },
-            "nav-link-selected": {"background-color": "#04AA6D"},
+            "nav-link-selected": {"background-color": "#76adf5"},
         }
     )
 
@@ -91,9 +91,9 @@ if navigation == "Home":
     With a commitment to innovation and precision, I strive to build impactful technologies that shape the future.
     """
     typewrite_abt = typewrite(about)
-    col1, col2 = st.columns(2)
+    col1 = st.container() 
 
-    profile = Image.open("images/Copilot_14.jpg")  # Replace with your profile image path
+    #profile = Image.open("images/Copilot_14.jpg")  # Replace with your profile image path
     
     time.sleep(2)
 
@@ -108,14 +108,13 @@ if navigation == "Home":
         """, unsafe_allow_html=True)
     
     with col1:
-        st.image(profile)
-    with col2:
         components.html(typewrite_abt, height=400)
+    
 
 if navigation == "Skills":
     skills = {
-        "Python": 95,
-        "Data Analysis": 90,
+        "Python": 95,    
+        "DevOps": 90,   
         "Deep Learning": 85,
         "Machine Learning": 90,
         "Natural Language Processing": 80,
@@ -136,7 +135,7 @@ if navigation == "Skills":
             margin: 7px 0;
         }
         .progress-bar div {
-            background-color: #04AA6D;
+            background-color: #76adf5;
             color: white;
             text-align: center;
             border-radius: 10px;
@@ -164,14 +163,14 @@ if navigation == "Projects":
         text-decoration: none;
     }
     a:hover {
-        color: #04AA6D !important;
+        color: #76adf5 !important;
     }
     </style>
     """, unsafe_allow_html=True)
     cards = [
-        {"title": "Chatbot for Healthcare", "image": "images/Copilot_14.jpg", "link": "https://github.com/natasha/project1"},
-        {"title": "Predictive Analytics for E-commerce", "image": "images/Copilot_14.jpg", "link": "https://github.com/natasha/project2"},
-        {"title": "Computer Vision in Retail", "image": "images/Copilot_14.jpg", "link": "https://github.com/natasha/project3"},
+        {"title": "Agentic RAG", "image": "images/Copilot_14.jpg", "link": "https://github.com/natnew"},
+        {"title": "Multilingual Search", "image": "images/Copilot_14.jpg", "link": "https://github.com/natnew"},
+        {"title": "QA Bot", "image": "images/Copilot_14.jpg", "link": "https://github.com/natnew"},
     ]
 
     col1, col2, col3 = st.columns(3)
@@ -181,9 +180,24 @@ if navigation == "Projects":
 
 if navigation == "Competitions":
     st.write("### :medal: Competitions")
+
+    # Add the global link styles
+    st.markdown("""
+    <style>
+    a {
+        text-align: center !important;
+        color: white !important;
+        text-decoration: none;
+    }
+    a:hover {
+        color: #76adf5 !important;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+    
     cards = [
-        {"title": "AI Hackathon Winner", "image": "images/Copilot_15.jpg", "link": "https://example.com/comp1"},
-        {"title": "Kaggle Silver Medalist", "image": "images/Copilot_16.jpg", "link": "https://example.com/comp2"},
+        {"title": "AI Hackathon Winner", "image": "images/Copilot_15.jpg", "link": "https://github.com/natnew"},
+        {"title": "Kaggle Medalist", "image": "images/Copilot_16.jpg", "link": "https://github.com/natnew"},
     ]
     col1, col2 = st.columns(2)
     for col, card in zip([col1, col2], cards):
@@ -192,6 +206,21 @@ if navigation == "Competitions":
 
 if navigation == "Contact":
     st.write("### :mailbox_closed: Get In Touch With Me!")
+
+    # Add the global link styles
+    st.markdown("""
+    <style>
+    a {
+        text-align: center !important;
+        color: white !important;
+        text-decoration: none;
+    }
+    a:hover {
+        color: #76adf5 !important;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
     contact_form = """
     <form action="https://formsubmit.co/natashalondon2021@gmail.com" method="POST">
         <input type="hidden" name="_captcha" value="false">
@@ -204,12 +233,27 @@ if navigation == "Contact":
     st.markdown(contact_form, unsafe_allow_html=True)
 
     media = [
-        {"title": "LinkedIn", "image": "images/Copilot_17.jpg", "link": "https://linkedin.com/in/natasha"},
-        {"title": "GitHub", "image": "images/Copilot_17.jpg", "link": "https://github.com/natasha"},
-        {"title": "Kaggle", "image": "images/Copilot_17.jpg", "link": "https://kaggle.com/natasha"},
+        {"title": "LinkedIn", "link": "https://www.linkedin.com/in/natasha-newbold/"},
+        {"title": "GitHub", "link": "https://github.com/natnew"},
+        {"title": "Kaggle", "link": "https://www.kaggle.com/natashalondon"},
     ]
 
-    col1, col2, col3 = st.columns(3)
-    for col, medium in zip([col1, col2, col3], media):
-        col.image(medium['image'], width=40)
-        col.markdown(f"[{medium['title']}]({medium['link']})")
+    # Add a container to center the links
+    with st.container():
+        st.markdown(
+            """
+            <div style="display: flex; justify-content: center; gap: 50px; margin-top: 20px;">
+            """,
+            unsafe_allow_html=True
+        )
+
+        for medium in media:
+                    st.markdown(
+                        f"""
+                        <a href='{medium['link']}' target='_blank' style='text-decoration: none; color: #04AA6D; font-size: 16px;'>{medium['title']}</a>
+                        """,
+                        unsafe_allow_html=True
+                    )
+                
+        st.markdown("</div>", unsafe_allow_html=True)
+
